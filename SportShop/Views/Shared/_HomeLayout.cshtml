@@ -4,61 +4,31 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <link href="~/Content/fontWareSome/js/all.js" rel="stylesheet" />
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
-        .Header{
-            position:fixed;
-            top:0px;
-            left:0px;
-            right:0px;
-            z-index:20;
-        }
-        .menu {
-            height: 45px;
-            background-color: red;
-            display:flex;
-            flex-direction:row;
-            justify-content:space-between;
-        }
-        .categories{
-            height:25px;
-            background-color:blue;
-        }
-        .main{
-           margin:70px 80px;
-        }
-        .mainContainer{
-            display:flex;
-            flex-direction:row;
-        }
-        .sideBar{
-            width:50px;
-        }
-        .left{
-            background-color:pink;
-            width:25%;
-        }
-        .middle {
-            background-color: green;
-            width: 25%;
-        }
-        .right {
-            background-color: blue;
-            width: 25%;
-        }
-    </style>
+    <link href="~/Content/MenuStyle.css" rel="stylesheet" />
+    <link href="~/Content/ProductStyle.css" rel="stylesheet" />
+    
 </head>
 <body>
+    <script src="~/Content/fontWareSome/js/all.js"></script>
     <div class="Header">
         <div class="menu">
-            <div class="left">left</div>
-            <div class="middle">middle</div>
+            <div class="left">
+                <div class="logo">
+                    <a href="@Url.Action("Index","Product")"> Sp<i class="fa-solid fa-fire-flame-curved"></i>rtStore</a>
+                   
+                </div>
+            </div>
+            <div class="middle">
+                <div class="fa-search">
+                    <button class="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <input type="text" class="searchBar" value="" placeholder="Tìm Kiếm sản phẩm, môn thể thao..." />
+                </div>
+               
+            </div>
             <div class="right">
-                <i class="fa-solid fa-user">Dang Nhap</i>
+                <div class="btn1"><a href="@Url.Action("Index","Login")"><i class="fa-solid fa-user"></i>Đăng nhập</a></div>
+                <div class="btn1"><a href="@Url.Action("Index", "Cart")"><i class="fa-solid fa-cart-shopping"></i>Giỏ hàng</a></div>
+                <div class="btn1"><a href="@Url.Action("Contact", "Home")"><i class="fa-solid fa-comment"></i>Liên hệ</a></div>
             </div>
         </div>
         <div class="categories">
