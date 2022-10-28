@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/fontWareSome/js/all.js" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .Header{
+            position:fixed;
+            top:0px;
+            left:0px;
+            right:0px;
+            z-index:20;
+        }
+        .menu {
+            height: 45px;
+            background-color: red;
+            display:flex;
+            flex-direction:row;
+            justify-content:space-between;
+        }
+        .categories{
+            height:25px;
+            background-color:blue;
+        }
+        .main{
+           margin:70px 80px;
+        }
+        .mainContainer{
+            display:flex;
+            flex-direction:row;
+        }
+        .sideBar{
+            width:50px;
+        }
+        .left{
+            background-color:pink;
+            width:25%;
+        }
+        .middle {
+            background-color: green;
+            width: 25%;
+        }
+        .right {
+            background-color: blue;
+            width: 25%;
+        }
+    </style>
+</head>
+<body>
+    <div class="Header">
+        <div class="menu">
+            <div class="left">left</div>
+            <div class="middle">middle</div>
+            <div class="right">
+                <i class="fa-solid fa-user">Dang Nhap</i>
+            </div>
+        </div>
+        <div class="categories">
+            categories
+        </div>
+    </div>
+   <div class="main">
+      @RenderBody()
+   </div>
+</body>
+</html>
