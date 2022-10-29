@@ -10,10 +10,16 @@ namespace SportShop.Controllers
     public class ProductController : Controller
     {
         // GET: Product
-        public ActionResult Index()
+        //show all products
+        public ActionResult Index(string _name)
         {
             DBSportStoreEntities WebDB = new DBSportStoreEntities();
-            return View(WebDB.Products.ToList());
+            if (_name == null)
+                return View(WebDB.Products.ToList());
+            else
+                return View(WebDB.Products.Where(s => s.NamePro.Contains(_name)).ToList());
         }
+        
+       
     }
 }

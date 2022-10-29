@@ -6,7 +6,7 @@
     <title>@ViewBag.Title</title>
     <link href="~/Content/MenuStyle.css" rel="stylesheet" />
     <link href="~/Content/ProductStyle.css" rel="stylesheet" />
-    
+    @RenderSection("css",false)
 </head>
 <body>
     <script src="~/Content/fontWareSome/js/all.js"></script>
@@ -15,16 +15,18 @@
             <div class="left">
                 <div class="logo">
                     <a href="@Url.Action("Index","Product")"> Sp<i class="fa-solid fa-fire-flame-curved"></i>rtStore</a>
-                   
+                    
                 </div>
             </div>
             <div class="middle">
-                <div class="fa-search">
-                    <button class="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <input type="text" class="searchBar" value="" placeholder="Tìm Kiếm sản phẩm, môn thể thao..." />
+                @using (Html.BeginForm("Index", "Product", FormMethod.Get))
+                {
+                    <div class="fa-search">
+                        <button class="searchBtn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <input type="text" class="searchBar" name="_name" placeholder="Tìm Kiếm sản phẩm, môn thể thao..." />
+                    </div>
+                }
                 </div>
-               
-            </div>
             <div class="right">
                 <div class="btn1"><a href="@Url.Action("Index","Login")"><i class="fa-solid fa-user"></i>Đăng nhập</a></div>
                 <div class="btn1"><a href="@Url.Action("Index", "Cart")"><i class="fa-solid fa-cart-shopping"></i>Giỏ hàng</a></div>
@@ -32,7 +34,15 @@
             </div>
         </div>
         <div class="categories">
-            categories
+            <ul class="catList">
+                <li><i class="fa-solid fa-person-hiking"></i>Leo núi</li>
+                <li><i class="fa-solid fa-tent"></i>Cắm trại</li>
+                <li><i class="fa-solid fa-person-running"></i>Chạy bộ</li>
+                <li><i class="fa-solid fa-dumbbell"></i>Fitness</li>
+                <li><i class="fa-solid fa-person-swimming"></i>Thể thao dưới nước</li>
+                <li><i class="fa-solid fa-bicycle"></i>Đạp xe</li>
+                <li><i class="fa-solid fa-futbol"></i>Thể thao đồng đội</li>
+            </ul>
         </div>
     </div>
    <div class="main">

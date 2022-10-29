@@ -234,6 +234,9 @@
     <Content Include="Content\img\GIAY\sp3.jpg" />
     <Content Include="Content\img\GIAY\sp4.jpg" />
     <Content Include="Content\img\GIAY\sp5.jpg" />
+    <Content Include="Content\img\thumb\thumb1.jpg" />
+    <Content Include="Content\img\thumb\thumb2.jpg" />
+    <Content Include="Content\img\thumb\thumb3.jpg" />
     <Content Include="Content\img\TTDN\KINHBOI.jpg" />
     <Content Include="Content\img\TTDV\VOT.jpg" />
     <Content Include="Content\MenuStyle.css" />

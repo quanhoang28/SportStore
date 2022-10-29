@@ -8,21 +8,23 @@
     left: 0px;
     right: 0px;
     z-index: 20;
+    background-color:white;
 }
 
 .menu {
     height: 45px;
-  
+    background-color:white;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     font-family:Arial;
     font-weight:600;
+   
 }
 
 .categories {
-    height: 25px;
-    background-color: blue;
+    height: 20px;
+   
 }
 .left {
     
@@ -79,4 +81,11 @@
     font-size: large;
     border-radius:4px;
     color:darkblue;
+}
+li{
+    display:inline-block;
+    margin-left:6%;
+}
+.categories {
+    border-bottom: 0.2px solid #EEEEEE;
 }
