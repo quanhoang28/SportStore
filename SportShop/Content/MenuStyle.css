@@ -89,3 +89,9 @@ li{
 .categories {
     border-bottom: 0.2px solid #EEEEEE;
 }
+a:link{
+    text-decoration:none;
+}
+a:hover {
+    text-decoration: none;
+}

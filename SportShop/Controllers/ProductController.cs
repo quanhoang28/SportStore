@@ -18,8 +18,9 @@ namespace SportShop.Controllers
                 return View(WebDB.Products.ToList());
             else
                 return View(WebDB.Products.Where(s => s.NamePro.Contains(_name)).ToList());
+           
         }
         
-       
+        
     }
 }
