@@ -9,11 +9,12 @@ namespace SportShop.Controllers
 {
     public class ProductController : Controller
     {
+        DBSportStoreEntities WebDB = new DBSportStoreEntities();
         // GET: Product
         //show all products
         public ActionResult Index(string _name)
         {
-            DBSportStoreEntities WebDB = new DBSportStoreEntities();
+            
             if (_name == null)
                 return View(WebDB.Products.ToList());
             else
@@ -21,6 +22,34 @@ namespace SportShop.Controllers
            
         }
         
-        
+        public ActionResult bike()
+        {
+            return View(WebDB.Products.Where(s =>s.Category.Contains("BIKE")).ToList());
+        }
+
+        public ActionResult Fitness()
+        {
+            return View(WebDB.Products.Where(s => s.Category.Contains("DCTT")).ToList());
+        }
+        public ActionResult LeoNui()
+        {
+            return View(WebDB.Products.Where(s => s.Category.Contains("DCLN")).ToList());
+        }
+        public ActionResult CamTrai()
+        {
+            return View(WebDB.Products.Where(s => s.Category.Contains("DCDN")).ToList());
+        }
+        public ActionResult ChayBo()
+        {
+            return View(WebDB.Products.Where(s => s.Category.Contains("CHAY")).ToList());
+        }
+        public ActionResult TTDN()
+        {
+            return View(WebDB.Products.Where(s => s.Category.Contains("TTDN")).ToList());
+        }
+        public ActionResult TTDD()
+        {
+            return View(WebDB.Products.Where(s => s.Category.Contains("TTDD")).ToList());
+        }
     }
 }

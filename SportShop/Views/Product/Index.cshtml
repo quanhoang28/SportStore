@@ -121,7 +121,11 @@
                             
                             <button id="BuyNowBtn" type="submit">Buy now</button>
                             <p id="proName"> @Html.DisplayFor(modelItem => item.NamePro)</p>
-                            <p id="cate"> @Html.DisplayFor(modelItem => item.Category)</p>
+                            <p id="cate">
+                                @Html.DisplayFor(modelItem => item.Category)
+                                @Html.DisplayFor(modelItem => item.Category2)
+                            </p>
+                            
                         </div>
                     </div>
                 </div>

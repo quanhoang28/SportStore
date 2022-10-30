@@ -1,0 +1,140 @@
+﻿@model IEnumerable<SportShop.Models.Product>
+
+@{
+    ViewBag.Title = "CamTrai";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<style>
+    .title {
+        text-align: center;
+        height: 300px;
+    }
+
+    .product {
+        border: thin solid #9b9999;
+        margin-top: 30px;
+        border-radius: 3px;
+    }
+
+    .thumbnail {
+        height: 280px;
+        width: 90%;
+        margin-left: 5%;
+        margin-top: 5%;
+    }
+
+    img.thumbnail {
+        object-fit: cover;
+        width: auto;
+        height: 90%;
+    }
+
+    .proDescription {
+        width: 90%;
+        margin-left: 5%;
+        position: relative;
+    }
+
+    #cate {
+        font-size: 9px;
+        font-weight: 600;
+        color: gray;
+    }
+
+    #proName {
+        font-size: 16px;
+        margin-left: 10px;
+        font-weight: 600;
+        color: darkblue;
+    }
+
+    #text {
+        width: 50%;
+    }
+
+
+    #price {
+        margin-left: 30px;
+        margin-top: 5px;
+        padding: 5px;
+    }
+
+    #BuyNowBtn {
+        border: none;
+        background-color: darkblue;
+        color: white;
+        font-size: small;
+        border-radius: 4px;
+        height: 30px;
+        width: 100px;
+        position: absolute;
+        margin-left: 55%;
+        margin-top: -40px;
+    }
+
+    #text {
+        font-weight: 600;
+        margin-left: 10px;
+        background-color: #EEEEEE;
+        width: 80%;
+        border-radius: 10px;
+    }
+
+    .title img {
+        width: 100%;
+        object-fit: cover;
+        height: 300px;
+        position: relative;
+    }
+
+    .title h2 {
+        position: absolute;
+        margin-top: -170px;
+        background-color: white;
+        padding: 5px 20px;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+        font-weight: 600;
+        color: darkblue;
+        border: 3px solid darkblue;
+        border-left: none;
+    }
+</style>
+
+
+<div class="titleContainer">
+    <div class="title">
+        <img src="~/Content/img/camp.png" alt="Alternate Text" />
+        <h2>Cắm trại</h2>
+    </div>
+</div>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-3 col-md-4 col-sm-6 ">
+                <div class="product">
+                    <div class="thumbnail"><img src=@Html.DisplayFor(modelItem => item.ImagePro) alt="Alternate Text" /></div>
+                    <div class="proDescription">
+                        <div id="text"><p id="price"> @Html.DisplayFor(modelItem => item.Price)0đ</p></div>
+
+                        <button id="BuyNowBtn" type="submit">Buy now</button>
+                        <p id="proName"> @Html.DisplayFor(modelItem => item.NamePro)</p>
+                        <p id="cate">
+                            @Html.DisplayFor(modelItem => item.Category)
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>

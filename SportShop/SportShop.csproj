@@ -218,6 +218,8 @@
     <Content Include="Content\img\Bike\bike6.jpg" />
     <Content Include="Content\img\Bike\bike7.jpg" />
     <Content Include="Content\img\Bike\bike8.jpg" />
+    <Content Include="Content\img\biking.jpg" />
+    <Content Include="Content\img\camp.png" />
     <Content Include="Content\img\DCDN\BALOCAMTRAI.jpg" />
     <Content Include="Content\img\DCTT\DCTT1.jpg" />
     <Content Include="Content\img\DCTT\DCTT2.jpg" />
@@ -230,11 +232,16 @@
     <Content Include="Content\img\DCTT\THAM\tham6.jpg" />
     <Content Include="Content\img\DCTT\THAM\tham7.jpg" />
     <Content Include="Content\img\DCTT\THAM\tham8.jpg" />
+    <Content Include="Content\img\fitness.jpg" />
     <Content Include="Content\img\GIAY\sp1.jpg" />
     <Content Include="Content\img\GIAY\sp2.jpg" />
     <Content Include="Content\img\GIAY\sp3.jpg" />
     <Content Include="Content\img\GIAY\sp4.jpg" />
     <Content Include="Content\img\GIAY\sp5.jpg" />
+    <Content Include="Content\img\hiking.jpg" />
+    <Content Include="Content\img\Jogging.jpg" />
+    <Content Include="Content\img\soccer.jpg" />
+    <Content Include="Content\img\swim..png" />
     <Content Include="Content\img\thumb\thumb1.jpg" />
     <Content Include="Content\img\thumb\thumb2.jpg" />
     <Content Include="Content\img\thumb\thumb3.jpg" />
@@ -300,6 +307,13 @@
     <Content Include="Views\Shared\_CartLayout.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Product\bike.cshtml" />
+    <Content Include="Views\Product\Fitness.cshtml" />
+    <Content Include="Views\Product\LeoNui.cshtml" />
+    <Content Include="Views\Product\CamTrai.cshtml" />
+    <Content Include="Views\Product\ChayBo.cshtml" />
+    <Content Include="Views\Product\TTDN.cshtml" />
+    <Content Include="Views\Product\TTDD.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

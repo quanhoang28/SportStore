@@ -24,6 +24,7 @@ namespace SportShop.Models
         public string NamePro { get; set; }
         public string DecriptionPro { get; set; }
         public string Category { get; set; }
+        public string Category2 { get; set; }
         public Nullable<decimal> Price { get; set; }
         public string ImagePro { get; set; }
         public Nullable<bool> soldOut { get; set; }
