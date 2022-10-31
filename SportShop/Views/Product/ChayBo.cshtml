@@ -118,21 +118,22 @@
 
         @foreach (var item in Model)
         {
-            <div class="col-lg-3 col-md-4 col-sm-6 ">
-                <div class="product">
-                    <div class="thumbnail"><img src=@Html.DisplayFor(modelItem => item.ImagePro) alt="Alternate Text" /></div>
-                    <div class="proDescription">
-                        <div id="text"><p id="price"> @Html.DisplayFor(modelItem => item.Price)0đ</p></div>
+        <div class="col-lg-3 col-md-4 col-sm-6 ">
+            <div class="product">
+                <a href="@Url.Action("ProductDetail","Product",new {id=item.ProductID })"><div class="thumbnail"><img src=@Html.DisplayFor(modelItem => item.ImagePro) alt="Alternate Text" /></div></a>
+                <div class="proDescription">
+                    <div id="text"><p id="price"> @Html.DisplayFor(modelItem => item.Price)0đ</p></div>
 
-                        <button id="BuyNowBtn" type="submit">Buy now</button>
-                        <p id="proName"> @Html.DisplayFor(modelItem => item.NamePro)</p>
-                        <p id="cate">
-                            @Html.DisplayFor(modelItem => item.Category)
+                    <a href="@Url.Action("ProductDetail","Product",new {id=item.ProductID })"><button id="BuyNowBtn" type="submit">Buy now</button></a>
+                    <p id="proName"> @Html.DisplayFor(modelItem => item.NamePro)</p>
+                    <p id="cate">
+                        @Html.DisplayFor(modelItem => item.Category)
+                        @Html.DisplayFor(modelItem => item.Category2)
+                    </p>
 
-                        </p>
-                    </div>
                 </div>
             </div>
+        </div>
         }
 
 

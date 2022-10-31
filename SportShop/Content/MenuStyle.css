@@ -56,6 +56,7 @@
     border: none;
     background-color: #EEEEEE;
     color: black;
+    height:23px;
 }
 .searchBtn {
     color: black;
@@ -64,6 +65,7 @@
     height: 23px;
     width: 10%;
     background-color: #EEEEEE;
+    
 }
 .fa-search{
     

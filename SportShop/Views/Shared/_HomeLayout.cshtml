@@ -22,8 +22,8 @@
                 @using (Html.BeginForm("Index", "Product", FormMethod.Get))
                 {
                     <div class="fa-search">
-                        <button class="searchBtn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                        <input type="text" class="searchBar" name="_name" placeholder="Tìm Kiếm sản phẩm, môn thể thao..." />
+                        <button class="searchBtn" type="submit" ><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <input type="text" class="searchBar" name="_name" placeholder="Tìm Kiếm sản phẩm, môn thể thao..." style="height:22px;margin-left:-1px"/>
                     </div>
                 }
                 </div>
@@ -47,6 +47,9 @@
     </div>
    <div class="main">
       @RenderBody()
+   </div>
+   <div class="footer">
+      
    </div>
 </body>
 </html>

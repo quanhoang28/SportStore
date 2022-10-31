@@ -21,6 +21,10 @@ namespace SportShop.Controllers
                 return View(WebDB.Products.Where(s => s.NamePro.Contains(_name)).ToList());
            
         }
+        public ActionResult ProductDetail(int id)
+        {
+            return View(WebDB.Products.Where(s=>s.ProductID==id).FirstOrDefault());
+        }
         
         public ActionResult bike()
         {

@@ -1,0 +1,35 @@
+﻿@model SportShop.Models.Product
+
+@{
+    ViewBag.Title = "ProductDetail";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<h2>ProductDetail</h2>
+<style>
+    td{
+        background-color:red;
+    }
+    img{
+        width:500px;
+    }
+</style>
+<div>
+    <h4>Product</h4>
+    <table>
+        <tr>
+            <td rowspan="3"><img src=@Html.DisplayFor(model => model.ImagePro) alt="Alternate Text" /></td>
+            <td>@Html.DisplayFor(model=>model.NamePro)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(model=>model.Category)</td>
+        </tr>
+        <tr>
+            <td><span>@Html.DisplayFor(model => model.Price)</span></td>
+        </tr>
+    </table>
+       
+</div>
+<p>
+   
+</p>
