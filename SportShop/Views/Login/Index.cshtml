@@ -5,12 +5,100 @@
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 <style>
-    .Header {
-        text-align: center;
-        font-family: Arial;
-        width:100%;
+   
+    td{
+        height:200px;
+        border:thin solid black;
+       
+    }
+
+    text{
+        width:200px;
+    }
+    .text-box{
+        width:300px;
+        height:30px;
+        margin: 10px 0;
+    }
+    .Pass,.mail{
+        margin-top:30px;
+        margin:10px 20px;
+    }
+    .field-validation-error{
+        color:red;
+    }
+    .LoginBtn{
+        margin-top:20px;
+        text-align:center;
+    }
+    .loginButton{
+        padding:6px 30px;
+        border:none;
+        border-radius:5px;
+        font-size:large;
+        font-weight:600;
+        color:white;
+        background-color:darkblue;
+    }
+    .Header{
+        text-align:center;
+        font-family:Arial;
+    }
+    .errorMess{
+        text-align:center;
+        color:red;
+    }
+    label{
+        font-size:large;
+        font-weight:500;
+    }
+    table{
+        margin-left:37%;
+        margin-top:10%;
     }
 </style>
-<div class="Header"><h1>Login</h1></div>
+
+<div class="container">
+    @using (Html.BeginForm("LoginAccount", "Login"))
+    {
+        @Html.AntiForgeryToken()
+        {
+            
+            <table>
+                <tr>
+                    <td>
+                        <div class="mail">
+                            <div class="Header"><h1>Login</h1></div>
+                            <div>@Html.LabelFor(model => model.gmail)</div>
+                            <div>@Html.TextBoxFor(model => model.gmail, new { @class = "text-box" })</div>
+                            <div>@Html.ValidationMessageFor(model => model.gmail)</div>
+                        </div>
+                        <div class="Pass">
+                            <div> @Html.LabelFor(model => model.PasswordUser)</div>
+                            <div>@Html.EditorFor(model => model.PasswordUser, new { @class = "text-box" })</div>
+                            <div>@Html.ValidationMessageFor(model => model.PasswordUser)</div>
+                            <div class="LoginBtn">
+                                <input type="submit" class="loginButton" value="Login" />
+                            </div>
+                            
+                        </div>
+                        <div class="errorMess">
+                            @if (ViewBag.ErrorInfo != null)
+                            {
+                                <p>
+                                    @ViewBag.ErrorInfo
+                                </p>
+                            }
+                        </div>
+                       
+                    </td>
+                </tr>
+                <tr>
+                </tr>
+            </table>
+        }
+    }
+</div>
+
 
 

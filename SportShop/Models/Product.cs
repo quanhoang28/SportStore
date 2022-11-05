@@ -24,14 +24,15 @@ namespace SportShop.Models
         public string NamePro { get; set; }
         public string DecriptionPro { get; set; }
         public string Category { get; set; }
-        public string Category2 { get; set; }
         public Nullable<decimal> Price { get; set; }
         public string ImagePro { get; set; }
         public Nullable<bool> soldOut { get; set; }
         public Nullable<double> Size { get; set; }
+        public string Category2 { get; set; }
     
         public virtual Category Category1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual Category Category11 { get; set; }
     }
 }

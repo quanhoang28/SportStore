@@ -17,7 +17,23 @@ namespace SportShop.Controllers
             return View();
         }
        
-       
+        [HttpPost]
+        public ActionResult LoginAccount(AdminUser _user)
+        {
+            var check = database.AdminUsers.Where(s => s.gmail==_user.gmail && s.PasswordUser==_user.PasswordUser).FirstOrDefault();
+            if(check==null)
+            {
+                ViewBag.ErrorInfo = "Sai thông tin !";
+                return View("Index");
+            }
+            else
+            {
+                database.Configuration.ValidateOnSaveEnabled = false;
+                Session["gmail"] = _user.gmail;
+                Session["PasswordUser"] = _user.PasswordUser;
+                return RedirectToAction("Index", "Product");
+            }
+        }
     }
    
 }
