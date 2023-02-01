@@ -6,50 +6,213 @@
     <title>@ViewBag.Title</title>
     <link href="~/Content/MenuStyle.css" rel="stylesheet" />
     <link href="~/Content/ProductStyle.css" rel="stylesheet" />
-    @RenderSection("css",false)
+    @RenderSection("css", false)
+    <style>
+        .main{
+            margin-top:70px;
+        }
+        .menu {
+            position: relative;
+        }
+        a {
+            text-decoration: none;
+        }
+        li{
+            display:block;
+        }
+        #account li {
+            margin-top: 5px;
+            
+        }
+        
+        .menu-child{
+            opacity:0;
+            visibility:hidden;
+        }
+       #account:hover .menu-child{
+           opacity:1;
+           visibility:visible;
+           transition:0.2s;
+       }
+        #account:hover {
+            cursor: pointer;
+        }
+        .menuIcon{
+            margin-left:20px;
+           
+        }
+        .categoriesBar{
+            position:absolute;
+            display:flex;
+            flex-direction:row;
+            border:thin solid #cbc8c8;
+            background-color:white;
+            width:97%;
+            justify-content:space-between;
+            padding:20px 20px;
+            margin-top:15px;
+            border-radius:10px;
+        }
+       
+       .menuIcon:hover{
+           cursor:pointer;
+       }
+       .menu-child{
+           position:absolute;
+           
+           flex-direction:column;
+           background-color:white;
+           padding:10px;
+           border-radius:3px;
+           border:thin solid #d3d1d1;
+           border-top:none;
+           margin-left:-8px;
+          
+       }
+      
+       #account{
+           position:relative;
+           
+       }
+       .gotToStore{
+           margin-left:15%;
+       }
+       .footer{
+           width:100%;
+           background-color:white;
+           margin-bottom:0;
+          
+       }
+       .footerText{
+           display:flex;
+           justify-content:space-around;
+           padding:10px;
+       }
+       .FooterLogo{
+           font-size:100px;
+           text-align:center;
+           cursor:default;
+       }
+    </style>
 </head>
-<body>
+<body style="background-color:#eeee">
     <script src="~/Content/fontWareSome/js/all.js"></script>
     <div class="Header">
-        <div class="menu">
-            <div class="left">
+        <div class="menu" style="border-bottom:thin solid #b6b2b2">
+            <div class="left" style="display:flex;align-items:center">
+                <div class="menuIcon" id="menuIcon">
+                    <a href="#"><i class="fa-solid fa-bars"></i></a>
+                    <div class="categoriesBar" id="cateBar">
+                        @{Html.RenderAction("CategoryPartial", "Cate");}
+                    </div>
+                </div>
                 <div class="logo">
-                    <a href="@Url.Action("Index","Product")"> Sp<i class="fa-solid fa-fire-flame-curved"></i>rtStore</a>
-                    
+                    <a href="@Url.Action("Index","Home")"> Sp<i class="fa-solid fa-fire-flame-curved"></i>rtStore</a>
+
+                </div>
+                <div class="gotToStore">
+                    <a href="@Url.Action("Index","Product")"><i class="fa-solid fa-shop"></i>Store</a>
                 </div>
             </div>
             <div class="middle">
                 @using (Html.BeginForm("Index", "Product", FormMethod.Get))
                 {
                     <div class="fa-search">
-                        <button class="searchBtn" type="submit" ><i class="fa-solid fa-magnifying-glass"></i></button>
-                        <input type="text" class="searchBar" name="_name" placeholder="Tìm Kiếm sản phẩm, môn thể thao..." style="height:22px;margin-left:-1px"/>
+                        <button class="searchBtn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <input type="text" class="searchBar" name="_name" placeholder="Tìm Kiếm sản phẩm, môn thể thao..." style="height:22px;margin-left:-1px" />
                     </div>
                 }
-                </div>
+            </div>
             <div class="right">
-                <div class="btn1"><a href="@Url.Action("Index","Login")"><i class="fa-solid fa-user"></i>Đăng nhập</a></div>
-                <div class="btn1"><a href="@Url.Action("Index", "Cart")"><i class="fa-solid fa-cart-shopping"></i>Giỏ hàng</a></div>
-                <div class="btn1"><a href="@Url.Action("Contact", "Home")"><i class="fa-solid fa-comment"></i>Liên hệ</a></div>
+                @if (Session["NameUser"] == null)
+                {
+                    <div class="btn1"><a href="@Url.Action("Index","Login")"><i class="fa-solid fa-user"></i>Login</a></div>
+                }
+                else
+                {
+                    
+                    <div class="btn1" id="account" style="border:none">
+                        <a><i class="fa-solid fa-user"></i>Account</a>
+                        <div class="menu-child">
+                            <div>
+                                <a href="@Url.Action("CustomerInfor","Login")"><i class="fa-solid fa-user"></i>Profile</a>
+                            </div>
+
+                            <div>
+                                <a href="@Url.Action("Logout","Login")"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                        
+                      
+                }
+            <div class="btn1">
+                <a href="@Url.Action("ShowCart", "Cart")"><i class="fa-solid fa-cart-shopping"></i>Cart</a>
+                @if (Session["Nameuser"] != null)
+                {
+                    @Html.Action("BagCart", "Cart")
+                }
+
+            </div>
+                <div class="btn1"><a href="@Url.Action("Contact", "Home")"><i class="fa-solid fa-comment"></i>Contact</a></div>
             </div>
         </div>
-        <div class="categories">
-            <ul class="catList">
-                <li><a href="@Url.Action("LeoNui","Product")"><i class="fa-solid fa-person-hiking"></i>Leo núi</a></li>
-                <li><a href="@Url.Action("CamTrai","Product")"><i class="fa-solid fa-tent"></i>Cắm trại</a></li>
-                <li><a href="@Url.Action("ChayBo","Product")"><i class="fa-solid fa-person-running"></i>Chạy bộ</a></li>
-                <li><a href="@Url.Action("Fitness","Product")"><i class="fa-solid fa-dumbbell"></i>Fitness</a></li>
-                <li><a href="@Url.Action("TTDN","Product")"><i class="fa-solid fa-person-swimming"></i>Thể thao dưới nước</a></li>
-                <li><a href="@Url.Action("bike","Product")"><i class="fa-solid fa-bicycle"></i>Đạp xe</a></li>
-                <li><a href="@Url.Action("TTDD","Product")"><i class="fa-solid fa-futbol"></i>Thể thao đồng đội</a></li>
-            </ul>
-        </div>
+       
     </div>
-   <div class="main">
-      @RenderBody()
-   </div>
-   <div class="footer">
+    <div class="main" id="main" style="background-color:white;padding-bottom:50px;border-radius:10px" onclick="HideCate()">
+        @RenderBody()
+    </div>
+    <div class="footer">
+        <div class="FooterLogo">
+             Sp<i class="fa-solid fa-fire-flame-curved"></i>rtStore
+        </div>
+        <div class="footerText">
+            <div class="CateBar">
+                @{Html.RenderAction("CategoryPartial", "Cate");}
+            </div>
+            <div>
+                <ul>
+                    <li> @Html.ActionLink("Liên hệ", "Contact", "Home")</li>
+                    <li>
+                        @Html.ActionLink("Trang chủ", "Index", "Home")
+                    </li>
+                    <li>
+                        
+                        @Html.ActionLink("Giỏ hàng", "ShowCart", "Cart")
+                    </li>
+                    <li>
+                        @Html.ActionLink("Cửa hàng", "Index", "Product")
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+       
+    </div>
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        var cateBar = document.getElementById("cateBar");
+        cateBar.style.opacity = '0';
+        cateBar.style.visibility = 'hidden';
+        document.getElementById("menuIcon").onclick = (function ShowCateBar() {
+            
+            if (cateBar.style.visibility == 'visible') {
+                cateBar.style.opacity = '0';
+                cateBar.style.visibility = 'hidden';
+            }
+            else {
+                cateBar.style.opacity = '1';
+                cateBar.style.visibility = 'visible';
+                cateBar.style.transition = '0.2s';
+            }
+        })
+         function HideCate() {
+            cateBar.style.visibility = 'hidden';
+            cateBar.style.opacity = '0';
+        }
       
-   </div>
+     
+    </script>
 </body>
+
 </html>

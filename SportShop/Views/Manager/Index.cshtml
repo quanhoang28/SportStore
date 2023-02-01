@@ -1,0 +1,69 @@
+﻿@model IEnumerable<SportShop.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+<style>
+    *{
+        font-family:Arial;
+    }
+    .container{
+        display:flex;
+    }
+    .btnContainer {
+        position: fixed;
+        background-color: darkblue;
+        padding: 10px 10px;
+        left: 0;
+        border: 2px solid #eeee;
+        text-decoration: none;
+        flex-direction:row;
+        top:70px;
+        border-radius:20px 0;
+        
+    }
+    .cateBar{
+        position:fixed;
+        background-color:white;
+        padding:10px 10px;
+        left:0;
+        border:2px solid #eeee;
+        text-decoration:none;
+        top:150px;
+        border-radius:0 10px 10px 0;
+    }
+    .container a{
+        color:darkblue;
+    }
+    .proList{
+        margin-left:10%;
+    }
+    .btnContainer a{
+        color:white;
+    }
+</style>
+<div class="container">
+    <div class="btnContainer" style="color: white">
+        
+            @Html.ActionLink("Order Manager", "OrderManager", "Manager")
+        <div>@Html.ActionLink("Create New", "Create", "Manager")</div>
+                
+            
+        
+    </div>
+    <div class="cateBar">
+       
+        
+        @{Html.RenderAction("ManagerCate", "Cate");}
+    </div>
+   
+    <div class="proList">
+        @{Html.RenderAction("ProductList", "Manager");}
+
+    </div>
+</div>
+
+<div>
+    @ViewBag.productError
+</div>

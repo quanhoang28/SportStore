@@ -1,15 +1,15 @@
 ﻿@model SportShop.Models.AdminUser
 
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "Đăng nhập";
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 <style>
-   
-    td{
-        height:200px;
-        border:thin solid black;
-       
+
+    td {
+        height: 200px;
+        border: 3px solid #efeeee;
+        border-radius: 10px;
     }
 
     text{
@@ -31,7 +31,7 @@
         margin-top:20px;
         text-align:center;
     }
-    .loginButton{
+    .Button{
         padding:6px 30px;
         border:none;
         border-radius:5px;
@@ -52,10 +52,21 @@
         font-size:large;
         font-weight:500;
     }
-    table{
-        margin-left:37%;
-        margin-top:10%;
+    table {
+        margin-left: 37%;
+        margin-top: 10%;
+        
+      
     }
+    .registerContainer{
+        text-align:center;
+        height:80px;
+    }
+    .Register{
+        background-color:gray;
+        
+    }
+   
 </style>
 
 <div class="container">
@@ -75,10 +86,10 @@
                         </div>
                         <div class="Pass">
                             <div> @Html.LabelFor(model => model.PasswordUser)</div>
-                            <div>@Html.EditorFor(model => model.PasswordUser, new { @class = "text-box" })</div>
+                            <div>@Html.PasswordFor(model => model.PasswordUser, new { @class = "text-box" })</div>
                             <div>@Html.ValidationMessageFor(model => model.PasswordUser)</div>
                             <div class="LoginBtn">
-                                <input type="submit" class="loginButton" value="Login" />
+                                <input type="submit" class="Login Button" value="Login" />
                             </div>
                             
                         </div>
@@ -94,6 +105,10 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="registerContainer">
+                        <a href="@Url.Action("Register","Login")"><input type="button" name="name" class="Register Button" value="Register" /></a>
+                        
+                    </td>
                 </tr>
             </table>
         }

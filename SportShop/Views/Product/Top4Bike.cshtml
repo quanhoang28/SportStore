@@ -1,0 +1,176 @@
+﻿@model List<SportShop.Models.Product>
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<style>
+    .title {
+        text-align: center;
+        height: 300px;
+    }
+
+    .product {
+        border: thin solid #9b9999;
+        margin-top: 30px;
+        border-radius: 3px;
+    }
+
+    .thumbnail {
+        height: 280px;
+        width: 90%;
+        margin-left: 5%;
+        margin-top: 5%;
+    }
+
+    img.thumbnail {
+        object-fit: cover;
+        width: auto;
+        height: 90%;
+    }
+
+    .proDescription {
+        width: 90%;
+        margin-left: 5%;
+        position: relative;
+    }
+
+    #cate {
+        font-size: 9px;
+        font-weight: 600;
+        color: gray;
+    }
+
+    #proName {
+        font-size: 16px;
+        margin-left: 10px;
+        font-weight: 600;
+        color: darkblue;
+    }
+
+    #text {
+        width: 50%;
+    }
+
+
+    #price {
+        margin-left: 30px;
+        margin-top: 5px;
+        padding: 5px;
+    }
+
+    #BuyNowBtn {
+        border: none;
+        background-color: darkblue;
+        color: white;
+        font-size: small;
+        border-radius: 4px;
+        height: 30px;
+        width: 100px;
+        position: absolute;
+        margin-left: 55%;
+        margin-top: -40px;
+    }
+
+    #text {
+        font-weight: 600;
+        margin-left: 10px;
+        background-color: #EEEEEE;
+        width: 80%;
+        border-radius: 10px;
+    }
+
+    .title img {
+        width: 100%;
+        object-fit: cover;
+        height: 300px;
+        position: relative;
+    }
+
+    .title h2 {
+        position: absolute;
+        margin-top: -170px;
+        background-color: white;
+        padding: 5px 20px;
+        border-bottom-right-radius: 5px;
+        border-top-right-radius: 5px;
+        font-weight: 600;
+        color: darkblue;
+        border: 3px solid darkblue;
+        border-left: none;
+    }
+
+    .cate-Name {
+        color: red;
+    }
+
+    #cate1, #cate2 {
+        background-color: #d0c9c9;
+        color: black;
+        padding: 2px 0;
+        border-radius: 2px 3px;
+        margin-right: 5px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+    .SoldOutList {
+        margin-top: 50px;
+    }
+</style>
+<div class="row">
+
+    
+    @{
+        var count = 0;
+    }
+    @foreach (var item in Model)
+    {
+
+        if (item.soldOut == false)
+        {
+            <div class="col-lg-3 col-md-4 col-sm-6 ">
+                <div class="product">
+                    <a href="@Url.Action("ProductDetail","Product",new {id=item.ProductID })">
+                        <div class="thumbnail">
+                            <img src=@Html.DisplayFor(modelItem => item.ImagePro) alt="Alternate Text" />
+                        </div>
+                    </a>
+                    <div class="proDescription">
+                        <div id="text"><p id="price"> @Html.DisplayFor(modelItem => item.Price)đ</p></div>
+                        @if (item.soldOut == true)
+                        {
+                            <a href="#"><button id="BuyNowBtn" type="submit" style="background-color:red">Sold Out!</button></a>
+                        }
+                        else
+                        {
+                            <a href="~/Cart/AddToCart/@item.ProductID"><button id="BuyNowBtn" type="submit">Buy now</button></a>
+                        }
+
+                        <p id="proName"> @Html.DisplayFor(modelItem => item.NamePro)</p>
+                        <p id="cate">
+                            <span id="cate1">@Html.DisplayFor(modelItem => item.Category)</span>
+                            <span id="cate2">@Html.DisplayFor(modelItem => item.Category2)</span>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            count++;
+        }
+        if (count == 4)
+        {
+            break;
+        }
+    }
+
+    
+
+
+
+</div>
+
+

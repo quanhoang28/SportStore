@@ -8,28 +8,30 @@
     left: 0px;
     right: 0px;
     z-index: 20;
-    background-color:white;
+    background-color: #a5a1a1;
+    align-items: center;
+    
 }
 
 .menu {
     height: 45px;
-    background-color:white;
+    background-color: white;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    font-family:Arial;
-    font-weight:600;
+    font-family: Arial;
+    font-weight: 600;
    
 }
 
 .categories {
     height: 20px;
-   
+  
 }
 .left {
     
     width: 25%;
     text-align:center;
+    font-size:inherit;
 }
 
 .middle {
@@ -38,17 +40,15 @@
 }
 
 .right {
-  
     width: 30%;
+    align-items: center;
     display:flex;
     flex-direction:row;
-    justify-content:space-between;
 }
 .btn1{
     margin-top:10px;
     color:black;
-    margin-right:50px
-
+    width:30%;
 }
 
 .searchBar {
@@ -76,7 +76,6 @@
 
 .logo {
    
-    margin-top: 10px;
     text-align: center;
     width: 100px;
     margin-left: 20%;
@@ -84,16 +83,23 @@
     border-radius:4px;
     color:darkblue;
 }
-li{
-    display:inline-block;
-    margin-left:6%;
-}
+
 .categories {
     border-bottom: 0.2px solid #EEEEEE;
+    z-index:@0;
 }
-a:link{
-    text-decoration:none;
+.Menu_child {
+    position: absolute;
+    margin-left:100px;
+    
+    top:100%;
+    
 }
-a:hover {
-    text-decoration: none;
+    
+#account{
+   position:relative;  
+   z-index:30;
+   border:thin solid #b3afaf;
+  
 }
+

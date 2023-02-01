@@ -11,7 +11,8 @@ namespace SportShop.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class Category
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,8 +20,11 @@ namespace SportShop.Models
         {
             this.Products = new HashSet<Product>();
             this.Products1 = new HashSet<Product>();
+            this.Products2 = new HashSet<Product>();
         }
-    
+        [NotMapped]
+        public List<Category> ListCate { get; set; }
+        public List<Category> LisCate2 { get; set; }
         public int Id { get; set; }
         public string IDCate { get; set; }
         public string NameCate { get; set; }
@@ -29,5 +33,7 @@ namespace SportShop.Models
         public virtual ICollection<Product> Products { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products2 { get; set; }
     }
 }

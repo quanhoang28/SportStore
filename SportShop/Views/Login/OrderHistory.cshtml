@@ -1,0 +1,62 @@
+﻿@model IEnumerable<SportShop.Models.ViewModel>
+
+@{
+    ViewBag.Title = "OrderHistory";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+<div>@Html.ActionLink("Back to infor", "CustomerInfor", "Login")</div>
+<h2>OrderHistory</h2>
+
+<style>
+    td{
+        border:thin solid black;
+        text-align:center;
+    }
+    table{
+        border-collapse:collapse;
+        width:100%;
+    }
+</style>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.dateOrder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.namePro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quant)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pricePro)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.namePro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pricePro)<span>đ</span>
+            </td>
+        </tr>
+    }
+
+</table>

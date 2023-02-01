@@ -1,0 +1,54 @@
+﻿@model SportShop.Models.Cart
+
+@{
+    ViewBag.Title = "ShowCart";
+    Layout = "~/Views/Shared/_CartLayout.cshtml";
+}
+<style>
+    .Header {
+        text-align: center;
+        margin-left: 160px;
+        font-family: Arial;
+    }
+
+    .main {
+        width: 30%;
+        margin-left: 29%;
+        margin-top: 100px;
+    }
+
+        .main img {
+            width: 320px;
+            margin-top: -30px;
+        }
+
+    button {
+        margin-left: 40px;
+        padding: 5px 50px;
+        background-color: white;
+        width:300px;
+    }
+
+    .main p {
+        padding-left: 40px;
+        width: 300px;
+        font-style: italic;
+        font-weight: 600;
+        font-size: 20px;
+    }
+    a{
+        text-decoration:none;
+    }
+</style>
+<div class="Header">
+    <h1>
+        Giỏ hàng
+    </h1>
+</div>
+<div class="main">
+    <img src="~/Content/img/1170678.png" alt="Alternate Text" />
+    <p>Please buy something first !</p>
+    <a href=" @Url.Action("Index","Product")"><button>Back to home</button></a>
+</div>
+
+

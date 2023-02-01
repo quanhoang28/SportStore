@@ -11,29 +11,47 @@ namespace SportShop.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class AdminUser
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public AdminUser()
+        {
+            this.OrderProes = new HashSet<OrderPro>();
+        }
+
+        [Display(Name = "ID")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity), Key()]
         public int ID { get; set; }
-        [Required(ErrorMessage ="Vui lòng nhập tên")]
-        [DisplayName("Tên User")]
-        [StringLength(50,MinimumLength =5,ErrorMessage ="Tên phải nhiều hơn 5 ký tự và it hơn 50 ký tự")]
+        [Required(ErrorMessage = "Vui lòng nhập họ tên")]
+        [StringLength(50, MinimumLength = 5,ErrorMessage ="Tên đăng nhập phải lớn hơn 5 và bé hơn 50 ký tự")]
+        [Display(Name = "Họ và tên")]
         public string NameUser { get; set; }
-        [DisplayName("Vị trí")]
+        [Display(Name = "Vị trí")]
         public string RoleUser { get; set; }
-        [Required(ErrorMessage ="Vui lòng nhập mật khẩu")]
-        [DisplayName("Mật khẩu")]
+        [Display(Name = "Mật khẩu")]
         [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
+        [StringLength(18, MinimumLength = 6, ErrorMessage = "Mật khẩu phải lớn hơn 6 và bé hơn 18 ký tự")]
         public string PasswordUser { get; set; }
-        [DisplayName("Số điện thoại")]
-        [Required(ErrorMessage ="Vui lòng nhập số điện thoại")]
-        [DataType(DataType.PhoneNumber)]
-        public string PhoneNumber1 { get; set; }
-        [DisplayName("Gmail")]
-        [Required(ErrorMessage ="Vui lòng nhập gmail")]
-        [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "Vui lòng nhập lại mật khẩu")]
+        [Display(Name = "Xác nhận mật khẩu")]
+        [Compare("PasswordUser", ErrorMessage = "Mật khẩu không khớp")]
+        [DataType(DataType.Password, ErrorMessage = "Sai cú pháp, vui lòng nhập lại")]
+        public string ConfirmPass { get; set; }
+        [Required(ErrorMessage = "Vui lòng nhập số điện thoại")]
+        [Display(Name = "Số điện thoại")]
+        [Phone(ErrorMessage ="Số điện thoại không hợp lệ")]
+        public string PhoneNumber { get; set; }
+        [Required(ErrorMessage = "Vui lòng nhập gmail")]
+        [Display(Name = "Gmail")]
+        [DataType(DataType.EmailAddress,ErrorMessage ="Gmail không hợp lệ, vui lòng nhập lại")]
+       
         public string gmail { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderPro> OrderProes { get; set; }
     }
 }

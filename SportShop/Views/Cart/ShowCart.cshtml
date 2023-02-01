@@ -1,0 +1,228 @@
+﻿@model SportShop.Models.Cart
+@{
+    ViewBag.Title = "ShowCart";
+    Layout = "~/Views/Shared/_CartLayout.cshtml";
+}
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 80px;
+    }
+
+    td {
+        width: 20%;
+    }
+
+    thead td {
+        border: thin solid #eeee;
+        border-top: none;
+        border-bottom: none;
+    }
+
+    tbody {
+        border-bottom: thin solid #eeee;
+    }
+
+    tfoot {
+        text-align: right;
+    }
+
+    td {
+        padding: 10px;
+    }
+
+    a {
+        text-decoration: none;
+        color: darkblue;
+    }
+
+    .updateBtn {
+        border: none;
+        background-color: darkblue;
+        color: white;
+        font-size: small;
+        border-radius: 4px;
+        height: 30px;
+        padding: 0 2px;
+    }
+
+    thead td {
+        font-weight: 600;
+    }
+
+    .textBox {
+        height: 28px;
+        border: thin solid #b6b0b0;
+        border-radius: 3px;
+    }
+    .Header {
+        text-align: center;
+        margin-left: 160px;
+        font-family: Arial;
+    }
+
+    .thumbnail {
+        width: 30%;
+        margin-left: 35%;
+        margin-top: 15%;
+    }
+
+        .thumbnail img {
+            width: 320px;
+            margin-top: -30px;
+        }
+
+    button {
+        margin-left: 60px;
+        padding: 5px 50px;
+        background-color: white;
+    }
+
+    .thumbnail p {
+        padding-left: 100px;
+        width: 300px;
+        font-style: italic;
+        font-weight: 600;
+        font-size: 20px;
+    }
+    .checkoutBtn{
+        border-radius:3PX;
+        color:white;
+        border:none;
+        background-color:darkblue;
+    }
+    #checkOutInput{
+        opacity:0;
+        text-align:right;
+        align-items:center;
+        width:100%;
+        visibility:hidden;
+    }
+    #orderBtnContainer{
+        text-align:right;
+    }
+    #orderBtn{
+        padding:5px 10px;
+        font-size:large;
+        font-family:Arial;
+        border-radius:5px;
+        border:none;
+        font-weight:600;
+        background-color:darkblue;
+        color:white;
+    }
+    #orderBtn:hover{
+        cursor:pointer;
+    }
+    
+    .CheckoutInputTB{
+        width:20%;
+        text-align:center;
+        border:2px thin #dcd7d7;
+        border-radius:10px;
+        border-collapse:unset;
+    }
+    .CheckoutInputTB td{
+        border:thin solid black;
+    }
+</style>
+<script type="text/javascript">
+    function ShowInput() {
+        document.getElementById("checkOutInput").style.opacity = '1';
+        document.getElementById("checkOutInput").style.visibility = 'visible';
+    }
+</script>
+@if (Session["NameUser"] == null)
+{
+    <div class="Header">
+       
+    </div>
+    <div class="thumbnail">
+        <img src="~/Content/img/1170678.png" alt="Alternate Text" />
+        <p>Please login first !</p>
+        <a href=" @Url.Action("Index","Login")"><button>Login</button></a>
+    </div>
+}
+
+else
+{
+    if (Model != null)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <td style="border-left: none;">Tên sản phẩm</td>
+                    <td>Hình sản phẩm</td>
+                    <td>Gía</td>
+                    <td>Số lượng</td>
+                    <td colspan="2" style="border-right: none;">Thành tiền</td>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    decimal total = item._quantity * (decimal)item._product.Price.Value;
+                    <tr>
+                        <td>@Html.DisplayFor(model => item._product.NamePro)</td>
+                        <td><img src="@Url.Content(item._product.ImagePro)" height="50" width="50" /></td>
+                        <td>@Html.DisplayFor(model => item._product.Price)0đ</td>
+                        <td>
+                            @using (Html.BeginForm("Update_Cart_Quantity", "Cart"))
+                            {
+                                <input type="hidden" value="@item._product.ProductID" name="idPro" />
+                                <input type="text" class="textBox" value="@item._quantity" name="getQuantity" />
+                                <input type="submit" value="Update" class="updateBtn" />
+                               
+                            }
+                        </td>
+                        <td>
+                            @total<span>đ</span>
+                        </td>
+                        <td><a href="~/Cart/RemoveCart/@item._product.ProductID">Delete</a></td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6" style="font-size:x-large">Tổng tiền :@Model.Total_money()đ</td>
+                  
+                </tr>
+                <tr>
+                    <td colspan="6" id="orderBtnContainer">
+                        <input type="button" value="Order" id="orderBtn" onclick="ShowInput()" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="6" id="checkOutInput">
+                        @using (Html.BeginForm("CheckOut", "Cart"))
+                        {
+                            <table class="CheckoutInputTB" align="center" >
+                                
+                                <tr>
+                                    <td>Address Delivery: <input type="text" name="AddressDelivarry" required/></td>
+                                   
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="submit" class="checkoutBtn" value="CheckOut" class="btn btn-success" />
+                                        <a href="@Url.Action("Register","Login")"></a>
+                                    </td>
+                                    
+                                </tr>
+                            </table>
+                        }
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    }
+    else
+    {
+        @Html.Partial("EmptyCart")
+    }
+    
+}
+
+

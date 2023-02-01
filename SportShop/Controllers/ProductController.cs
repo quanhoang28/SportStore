@@ -1,59 +1,105 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SportShop.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace SportShop.Controllers
 {
     public class ProductController : Controller
     {
-        DBSportStoreEntities WebDB = new DBSportStoreEntities();
+        DBSportStoreEntities6 WebDB = new DBSportStoreEntities6();
+        Product pro = new Product();
+        
+        
         // GET: Product
         //show all products
-        public ActionResult Index(string _name)
+        public ActionResult Index()
         {
-            
-            if (_name == null)
-                return View(WebDB.Products.ToList());
-            else
-                return View(WebDB.Products.Where(s => s.NamePro.Contains(_name)).ToList());
-           
-        }
-        public ActionResult ProductDetail(int id)
-        {
-            return View(WebDB.Products.Where(s=>s.ProductID==id).FirstOrDefault());
-        }
-        
-        public ActionResult bike()
-        {
-            return View(WebDB.Products.Where(s =>s.Category.Contains("BIKE")).ToList());
+            return View();
         }
 
-        public ActionResult Fitness()
+        public ActionResult ProductDetail(int id)
         {
-            return View(WebDB.Products.Where(s => s.Category.Contains("DCTT")).ToList());
+            return View(WebDB.Products.Where(s => s.ProductID == id).FirstOrDefault());
         }
-        public ActionResult LeoNui()
+
+        public PartialViewResult ProductList(string _name, string category, int? page, double min = double.MinValue, double max = double.MaxValue)
         {
-            return View(WebDB.Products.Where(s => s.Category.Contains("DCLN")).ToList());
+            int pageSize = 8;
+            int pageNum = (page ?? 1);
+          
+            if (_name != null)
+                return PartialView(WebDB.Products.Where(s => s.NamePro.Contains(_name)&&s.soldOut==false).OrderByDescending(s => s.NamePro).ToPagedList(pageNum, pageSize));
+
+            else if (category != null)
+                return PartialView(WebDB.Products.Where(s =>( (s.Category == category) || (s.Category2 == category)&&s.soldOut==false)).OrderByDescending(s => s.NamePro).ToPagedList(pageNum, pageSize));
+            else if (max != 0 && min != 0)
+            {
+                var List = WebDB.Products.Where(s => (double)s.Price >= min && (double)s.Price <= max &&s.soldOut==false).OrderByDescending(s=>s.NamePro).ToPagedList(pageNum,pageSize);
+                return PartialView(List);
+            }
+            else
+                return PartialView(WebDB.Products.Where(s=>s.soldOut==false).OrderByDescending(s => s.NamePro).ToPagedList(pageNum,pageSize));
         }
-        public ActionResult CamTrai()
+        public PartialViewResult SelectCate()
         {
-            return View(WebDB.Products.Where(s => s.Category.Contains("DCDN")).ToList());
+            Category se_cate = new Category();
+            se_cate.ListCate = WebDB.Categories.ToList<Category>();
+            return PartialView(se_cate);
         }
-        public ActionResult ChayBo()
+        public PartialViewResult SoldOutList(string _name, string category)
         {
-            return View(WebDB.Products.Where(s => s.Category.Contains("CHAY")).ToList());
+            if (_name != null)
+                return PartialView(WebDB.Products.Where(s => s.NamePro.Contains(_name)).ToList());
+
+            else if (category != null)
+                return PartialView(WebDB.Products.Where(s => (s.Category == category) || (s.Category2 == category)).ToList());
+            else
+                return PartialView(WebDB.Products.ToList());
         }
-        public ActionResult TTDN()
+        public PartialViewResult Top4Bike()
         {
-            return View(WebDB.Products.Where(s => s.Category.Contains("TTDN")).ToList());
+            return PartialView(WebDB.Products.Where(s => (s.Category == "BIKE") || (s.Category2 == "BIKE")).ToList());
         }
-        public ActionResult TTDD()
+        public PartialViewResult Top4Shoes()
         {
-            return View(WebDB.Products.Where(s => s.Category.Contains("TTDD")).ToList());
+            return PartialView(WebDB.Products.OrderByDescending(s => s.ProductID).Where(s => (s.Category == "GIAY") || (s.Category2 == "GIAY")).ToList());
         }
+        public PartialViewResult Top4Product()
+        {
+            DBSportStoreEntities6 database = new DBSportStoreEntities6();
+
+            List<OrderDetail> orderD = database.OrderDetails.ToList();
+            List<Product> proList = database.Products.ToList();
+            var query = from od in orderD
+                        join p in proList on od.IDProduct equals p.ProductID into tbl
+                        group od by new
+                        {
+                            category1 = od.Product.Category,
+                            category2 = od.Product.Category2,
+                            SoldOut = od.Product.soldOut,
+                            idPro = od.IDProduct,
+                            namePro = od.Product.NamePro,
+                            imagePro = od.Product.ImagePro,
+                            price = od.Product.Price
+                        } into gr
+                        orderby gr.Sum(s => s.Quantity) descending
+                        select new ViewModel
+                        {
+                            soldOut = (bool)gr.Key.SoldOut,
+                            IDPro = gr.Key.idPro,
+                            NamePro = gr.Key.namePro,
+                            ImgPro = gr.Key.imagePro,
+                            pricePro = (decimal)gr.Key.price,
+                            Sum_Quantity = gr.Sum(s => s.Quantity)
+                        };
+            return PartialView(query.Take(5).ToList());
+        }
+       
     }
 }

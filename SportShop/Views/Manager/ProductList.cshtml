@@ -1,0 +1,88 @@
+﻿@model IEnumerable<SportShop.Models.Product>
+
+
+<style>
+    img{
+        width:100px;
+    }
+    td, th {
+        padding: 10px;
+        border-left: 3px solid #eeee;
+        border-bottom: 3px solid #eeee;
+        text-align:center;
+    }
+</style>
+
+<table class="table">
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NamePro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DecriptionPro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagePro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.soldOut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Size)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.NamePro)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DecriptionPro)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Category)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Category2)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Price)<span>0đ</span>
+    </td>
+    <td>
+        <img src="  @Html.DisplayFor(modelItem => item.ImagePro)" alt="Alternate Text" />
+      
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.soldOut)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Size)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Quantity)
+    </td>
+    <td>
+        @Html.ActionLink("Edit","Edit","Manager", new { id = item.ProductID },null ) 
+        @Html.ActionLink("Delete","Delete", "Manager", new { id = item.ProductID },null)
+    </td>
+</tr>
+}
+
+</table>

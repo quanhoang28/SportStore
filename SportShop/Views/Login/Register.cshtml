@@ -1,0 +1,79 @@
+﻿@model SportShop.Models.AdminUser
+
+@{
+    ViewBag.Title = "Đăng ký";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<style>
+    .field-validation-error {
+        color: red;
+    }
+
+    .Button {
+        padding: 6px 30px;
+        border: none;
+        border-radius: 5px;
+        font-size: large;
+        font-weight: 600;
+        color: white;
+        background-color: darkblue;
+        margin: 20px 0;
+    }
+
+    .RegistBoard {
+        text-align: center;
+    }
+
+    .RegisterInfo {
+        width: 30%;
+        margin-left: 35%;
+        border: 3px solid #dbd8d8;
+        border-radius: 10px 50px;
+    }
+
+    h2 {
+        font-family: Arial;
+    }
+</style>
+<div class="RegistBoard">
+
+    @using (Html.BeginForm("Register", "Login", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="RegisterInfo">
+            <h2>Register</h2>
+            <p>@Html.LabelFor(model => model.NameUser)</p>
+            <p>@Html.EditorFor(model => model.NameUser)</p>
+            <p>@Html.ValidationMessageFor(model => model.NameUser)</p>
+
+            @if (ViewBag.ErrorRegister != null)
+            {
+                <p>@ViewBag.ErrorRegister</p>
+            }
+
+
+            <p>@Html.LabelFor(model => model.PhoneNumber)</p>
+            <p>@Html.EditorFor(model => model.PhoneNumber)</p>
+            <p>@Html.ValidationMessageFor(model => model.PhoneNumber)</p>
+
+            <p>@Html.LabelFor(model => model.gmail)</p>
+            <p>@Html.EditorFor(model => model.gmail)</p>
+            <p>@Html.ValidationMessageFor(model => model.gmail)</p>
+
+            <p>@Html.LabelFor(model => model.PasswordUser)</p>
+            <p>@Html.PasswordFor(model => model.PasswordUser)</p>
+            <p>@Html.ValidationMessageFor(model => model.PasswordUser)</p>
+
+            <p>@Html.LabelFor(model => model.ConfirmPass)</p>
+            <p>@Html.PasswordFor(model => model.ConfirmPass)</p>
+            <p>@Html.ValidationMessageFor(model => model.ConfirmPass)</p>
+
+            <input type="submit" class="Button" value="Register" />
+        </div>
+
+    }
+
+
+</div>
+

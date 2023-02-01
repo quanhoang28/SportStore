@@ -1,9 +1,6 @@
 ﻿@model IEnumerable<SportShop.Models.Product>
 
-@{
-    ViewBag.Title = "TTDN";
-    Layout = "~/Views/Shared/_HomeLayout.cshtml";
-}
+
 
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
 <style>
@@ -101,41 +98,70 @@
         border: 3px solid darkblue;
         border-left: none;
     }
-</style>
 
+    .cate-Name {
+        color: red;
+    }
 
-<div class="titleContainer">
-    <div class="title">
-        <img src="~/Content/img/swim..png" alt="Alternate Text" />
-        <h2>Thể thao dưới nước</h2>
-    </div>
-</div>
+    #cate1, #cate2 {
+        background-color: #d0c9c9;
+        color: black;
+        padding: 2px 0;
+        border-radius: 2px 3px;
+        margin-right: 5px;
+    }
 
+    a {
+        text-decoration: none;
+    }
 
-
-<div class="container-fluid">
-    <div class="row">
-
-        @foreach (var item in Model)
-        {
-        <div class="col-lg-3 col-md-4 col-sm-6 ">
-            <div class="product">
-                <a href="@Url.Action("ProductDetail","Product",new {id=item.ProductID })"><div class="thumbnail"><img src=@Html.DisplayFor(modelItem => item.ImagePro) alt="Alternate Text" /></div></a>
-                <div class="proDescription">
-                    <div id="text"><p id="price"> @Html.DisplayFor(modelItem => item.Price)0đ</p></div>
-
-                    <a href="@Url.Action("ProductDetail","Product",new {id=item.ProductID })"><button id="BuyNowBtn" type="submit">Buy now</button></a>
-                    <p id="proName"> @Html.DisplayFor(modelItem => item.NamePro)</p>
-                    <p id="cate">
-                        @Html.DisplayFor(modelItem => item.Category)
-                        @Html.DisplayFor(modelItem => item.Category2)
-                    </p>
-
-                </div>
-            </div>
-        </div>
+        a:hover {
+            text-decoration: none;
         }
 
+    .SoldOutList {
+        margin-top: 50px;
+    }
+</style>
+<div class="row">
 
-    </div>
+    <h1 style="text-align:center;font-weight:600">Hết hàng</h1>
+    @foreach (var item in Model)
+    {
+        if (item.soldOut == true)
+        {
+            <div class="col-lg-3 col-md-4 col-sm-6 ">
+                <div class="product">
+                    <a href="#">
+                        <div class="thumbnail">
+                            <img src=@Html.DisplayFor(modelItem => item.ImagePro) alt="Alternate Text" />
+                        </div>
+                    </a>
+                    <div class="proDescription">
+                        <div id="text"><p id="price"> @Html.DisplayFor(modelItem => item.Price)0đ</p></div>
+                        @if (item.soldOut == true)
+                        {
+                            <a href="#"><button id="BuyNowBtn" type="submit" style="background-color:red">Sold Out!</button></a>
+                        }
+                        else
+                        {
+                            <a href="~/Cart/AddToCart/@item.ProductID"><button id="BuyNowBtn" type="submit">Buy now</button></a>
+                        }
+
+                        <p id="proName"> @Html.DisplayFor(modelItem => item.NamePro)</p>
+                        <p id="cate">
+                            <span id="cate1">@Html.DisplayFor(modelItem => item.Category)</span>
+                            <span id="cate2">@Html.DisplayFor(modelItem => item.Category2)</span>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        }
+
+    }
+
+
+
 </div>
+

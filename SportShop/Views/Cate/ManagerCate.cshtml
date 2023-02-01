@@ -1,0 +1,14 @@
+﻿@using SportShop.Models;
+@model List<Category>
+
+
+@{
+    foreach (var item in Model)
+    {
+        <div>
+            @Html.ActionLink(item.NameCate, "Index", "Manager", new { category = item.IDCate.Trim() }, " ")
+        </div>
+    }
+}
+
+

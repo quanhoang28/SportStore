@@ -1,0 +1,91 @@
+﻿@model IEnumerable<SportShop.Models.ViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+<style>
+    td {
+        border: thin solid black;
+        text-align: center;
+        padding:10px;
+    }
+    th{
+        padding:0 20px;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+</style>
+<p>
+    @Html.ActionLink("Back to list", "Index", "Manager")
+</p>
+<h2>Orders Manager</h2>
+<div style="display:flex">
+    <div>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CustomerName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.phoneNumb)
+                </th>   
+                <th>
+                    @Html.DisplayNameFor(model => model.gmail)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.dateOrder)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.namePro)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Quant)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.pricePro)
+                </th>
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.phoneNumb)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.gmail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dateOrder)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.namePro)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quant)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.pricePro)<span>đ</span>
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+
+    </div>
+   
+</div>

@@ -13,10 +13,10 @@ namespace SportShop.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DBSportStoreEntities : DbContext
+    public partial class DBSportStoreEntities6 : DbContext
     {
-        public DBSportStoreEntities()
-            : base("name=DBSportStoreEntities")
+        public DBSportStoreEntities6()
+            : base("name=DBSportStoreEntities6")
         {
         }
     

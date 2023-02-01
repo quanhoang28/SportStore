@@ -1,0 +1,82 @@
+﻿@model SportShop.Models.Product
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+<h2>Thêm mới sản phẩm</h2>
+<style>
+    .field-validation-error {
+        color: red;
+    }
+</style>
+@using (Html.BeginForm("Create", "Manager", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <table>
+        <tr>
+            <td>@Html.LabelFor(model => model.NamePro)</td>
+            <td>
+                @Html.EditorFor(model => model.NamePro)
+                <p>@Html.ValidationMessageFor(model => model.NamePro)</p>
+            </td>
+
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Category)</td>
+            <td>
+                @Html.DropDownListFor(model => model.Category, (SelectList)ViewBag.listCategory, "--Select category--")
+                <p>@Html.ValidationMessageFor(model => model.Category)</p>
+            </td>
+
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Category2)</td>
+            <td>
+                @Html.DropDownListFor(model => model.Category2, (SelectList)ViewBag.listCategory, "--Select category--")
+                <p>@Html.ValidationMessageFor(model => model.Category2)</p>
+            </td>
+
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.DecriptionPro)</td>
+            <td>
+                @Html.EditorFor(model => model.DecriptionPro)
+                <p>@Html.ValidationMessageFor(model => model.DecriptionPro)</p>
+            </td>
+
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Price)</td>
+            <td>
+                @Html.EditorFor(model => model.Price)
+                <p>@Html.ValidationMessageFor(model => model.Price)</p>
+            </td>
+
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Quantity)</td>
+            <td>
+                @Html.EditorFor(model => model.Quantity)
+                <p>@Html.ValidationMessageFor(model => model.Quantity)</p>
+            </td>
+
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.ImagePro)</td>
+            <td><img src="@Url.Content(Model.ImagePro)" height="150" width="150" id="previewImg" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="file" name="UploadImg" onchange="ChangeImage(this,document.getElementById('previewImg'))" /></td>
+
+        <tr>
+
+            <td><input type="submit" value="Create" /></td>
+
+        </tr>
+
+    </table>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

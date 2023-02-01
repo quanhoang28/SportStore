@@ -1,8 +1,241 @@
-﻿
+﻿@model List<SportShop.Models.Product>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Trang chủ";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
+<style>
+    .title img {
+        width: 100%;
+        object-fit: cover;
+        height: 300px;
+        position: relative;
+        border-radius: 10px;
+        border: 10px solid white;
+    }
 
-<h2>Index</h2>
+    .PopulerProduct {
+        text-align: center;
+    }
 
+    .Bike {
+        text-align: center;
+    }
+
+    .Shoes {
+        text-align: center;
+    }
+
+    .sport {
+        width: 23%;
+        position: relative;
+        padding-top: 20px;
+    }
+
+        .sport a {
+            width: 100%;
+        }
+
+        .sport img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 10px;
+        }
+
+    .SportMenu {
+        margin-top: 40px;
+        border: 3px solid #eeee;
+        width: 90%;
+        margin-left: 4%;
+        border-radius: 20px;
+    }
+
+    .sportName {
+        position: absolute;
+        margin-top: -30px;
+        left: 5px;
+        background-color: rgb(67, 68, 68);
+        color: rgb(255, 254, 254);
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 400;
+        padding-left: 5px;
+        padding-right: 8px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        border-radius: 4px;
+        opacity: 0.8;
+    }
+
+    .PopulerSport {
+        width: 90%;
+        margin-left: 6%;
+        display: flex;
+        justify-content: space-between;
+        height: 200px;
+        padding-bottom: 20px;
+    }
+
+    .titleSport {
+        text-align: center;
+        font-family: Arial;
+        font-weight: 600;
+        font-size: large;
+    }
+
+    .product1 {
+        text-align: center;
+        font-weight: 600;
+        font-family: Arial;
+        text-align: center;
+        font-size: large;
+        padding: 10px;
+        margin-top: 25px;
+    }
+
+    .ProList {
+        padding: 10px 20px;
+        border-radius: 20px;
+    }
+
+    .a {
+        width: 15%;
+        background-color: darkblue;
+        padding: 10px 5px;
+        border-radius: 10px 0;
+        color: white;
+        margin-left: 10px;
+    }
+
+    .FooterLogo {
+        font-size: 50px;
+    }
+
+  
+</style>
+
+    <div>
+        <a href="@Url.Action("Index","Product")">
+            <div class="titleContainer">
+                <div class="title">
+                    <img src="~/Content/img/biking.jpg" alt="Alternate Text" />
+                </div>
+                <div class="title">
+                    <img src="~/Content/img/hiking.jpg" alt="Alternate Text" />
+                </div>
+                <div class="title">
+                    <img src="~/Content/img/fitness.jpg" alt="Alternate Text" />
+                </div>
+                <div class="title">
+                    <img src="~/Content/img/Jogging.jpg" alt="Alternate Text" />
+                </div>
+                <div class="title">
+                    <img src="~/Content/img/swim..png" alt="Alternate Text" />
+                </div>
+            </div>
+            <div class="FooterLogo">
+                Sp<i class="fa-solid fa-fire-flame-curved"></i>rtStore
+            </div>
+        </a>
+
+    </div>
+
+<div>
+    <a href="@Url.Action("Index","Product")">
+        <div class="titleContainer">
+            <div class="title">
+                <img src="~/Content/img/biking.jpg" alt="Alternate Text" />
+            </div>
+            <div class="title">
+                <img src="~/Content/img/hiking.jpg" alt="Alternate Text" />
+            </div>
+            <div class="title">
+                <img src="~/Content/img/fitness.jpg" alt="Alternate Text" />
+            </div>
+            <div class="title">
+                <img src="~/Content/img/Jogging.jpg" alt="Alternate Text" />
+            </div>
+            <div class="title">
+                <img src="~/Content/img/swim..png" alt="Alternate Text" />
+            </div>
+        </div>
+    </a>
+
+</div>
+
+<div class="PopulerProduct product1">
+    <div class="a">
+        Top sản phẩm <i class="fa-regular fa-star"></i>
+    </div>
+
+
+</div>
+
+<div class="ProList">
+    @{Html.RenderAction("Top4Product", "Product");}
+</div>
+<div class="Bike product1">
+    <div class="a">
+        Xe đạp <i class="fa-solid fa-bicycle"></i>
+    </div>
+
+</div>
+<div class="ProList">
+    @{Html.RenderAction("Top4Bike", "Product");}
+</div>
+<div class="Shoes product1">
+    <div class="a" style="margin-right:0;">
+        Giày <i class="fa-solid fa-shoe-prints"></i>
+    </div>
+
+</div>
+<div class="ProList">
+    @{Html.RenderAction("Top4Shoes", "Product");}
+</div>
+
+<div>
+    <div class="SportMenu">
+        <div class="titleSport">
+            <p style="margin-top:20px;">CÁC MÔN THỂ THAO PHỔ BIẾN </p>
+        </div>
+        <div class="PopulerSport">
+            <div class="sport">
+                <a href="@Url.Action("Index","Product")">
+                    <img src="https://www.studytienganh.vn/upload/2021/03/93925.png" alt="">
+                </a>
+                <div class="sportName">Cắm Trại</div>
+            </div>
+            <div class="sport">
+                <a href="@Url.Action("Index","Product")"><img src="https://leep.imgix.net/2020/11/dap-xe-bao-nhieu-phut-moi-ngay-de-giu-hinh-the-san-chac.jpg?auto=compress&fm=pjpg&ixlib=php-1.2.1" alt=""></a>
+                <div class="sportName">Đạp Xe</div>
+            </div>
+            <div class="sport">
+                <a href="@Url.Action("Index","Product")"><img src="https://tse2.mm.bing.net/th?id=OIP.VgeFzHhytG7lOVY9YYaXCAHaD5&pid=Api&P=0" alt=""></a>
+                <div class="sportName">Fitness</div>
+            </div>
+            <div class="sport">
+                <a href="@Url.Action("Index","Product")"><img src="https://tse4.mm.bing.net/th?id=OIP.CcHk6rJ2IUOCUH1VkS7jAQHaDd&pid=Api&P=0" alt=""></a>
+                <div class="sportName">Bơi Lội</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    let slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("title");
+
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) { slideIndex = 1 }
+
+        slides[slideIndex - 1].style.display = "block";
+
+        setTimeout(showSlides, 2000);
+    }
+</script>
